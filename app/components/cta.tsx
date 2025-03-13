@@ -71,7 +71,7 @@ export default function CTA() {
     }, 1500)
   }
 
-  const handleSubmitEmpresa = (e) => {
+  const handleSubmitEmpresa = (e: React.FormEvent<HTMLFormElement>) => {  // Add type annotation
     e.preventDefault()
     setIsSubmittingEmpresa(true)
 
