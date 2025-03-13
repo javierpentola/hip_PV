@@ -20,9 +20,6 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: "Hip Energy - Energía Limpia para Andorra",
-  description:
-    "Hip Energy ofrece soluciones energéticas sostenibles y asequibles para hogares y empresas en Andorra. Cambia a energía limpia y ahorra en tu factura.",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
