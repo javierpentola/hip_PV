@@ -96,7 +96,13 @@ export function DashboardContent() {
           icon={TrendingUp}
           color="blue"
         />
-        <StatCard title="Próxima Factura" value="05/06" description="en 10 días" icon={AlertCircle} color="purple" />
+        <StatCard title="Próxima Factura" 
+                 value="05/06" 
+                 description="en 10 días" 
+                 icon={AlertCircle} 
+                 color="purple"
+                 change="0" 
+                 trend="neutral" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -180,7 +186,23 @@ export function DashboardContent() {
   )
 }
 
-function StatCard({ title, value, change, trend, description, icon: Icon, color }) {
+function StatCard({ 
+  title, 
+  value, 
+  change, 
+  trend, 
+  description, 
+  icon: Icon, 
+  color 
+}: {
+  title: string;
+  value: string;
+  change?: number | string;
+  trend?: 'up' | 'down' | 'neutral';
+  description: string;
+  icon: React.ElementType;
+  color: string;
+}) {
   const colorClasses = {
     yellow: "bg-yellow-100 text-yellow-800",
     green: "bg-green-100 text-green-800",
@@ -189,7 +211,7 @@ function StatCard({ title, value, change, trend, description, icon: Icon, color 
   }
 
   return (
-    <Card className={`${colorClasses[color]} border-none`}>
+    <Card className={`${colorClasses[color as keyof typeof colorClasses]} border-none`}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <Icon className="h-4 w-4 text-muted-foreground" />

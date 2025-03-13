@@ -96,11 +96,21 @@ export default function Services() {
   ]
 
   // Función para mostrar el modal con JavaScript puro
-  const showServiceModal = (service) => {
-    // Crear el elemento del modal
+  const showServiceModal = (service: {
+    icon: React.ElementType;
+    title: string;
+    description: string;
+    detailedContent: {
+      title: string;
+      description: string;
+      features: string[];
+      image: string;
+      cta: string;
+    };
+  }) => {
     const modalOverlay = document.createElement("div")
     modalOverlay.className = "fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
-
+    
     // Crear el contenido del modal
     const modalContent = document.createElement("div")
     modalContent.className =
@@ -433,7 +443,7 @@ export default function Services() {
                 <div class="p-4">
                   <ul class="space-y-2">
                     <li class="flex items-start gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="h-5 w-5 text-green-500 flex-shrink-  strokeLinecap="round" strokeLinejoin="round" class="h-5 w-5 text-green-500 flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="h-5 w-5 text-green-500 flex-shrink-0">
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
                       <span class="text-gray-700">Tarifas personalizadas según consumo</span>

@@ -155,10 +155,21 @@ const metodosDisponibles = [
 
 export function FacturacionContent() {
   const [tabActiva, setTabActiva] = useState("historial")
-  const [facturaSeleccionada, setFacturaSeleccionada] = useState(null)
-  const [facturaExpandida, setFacturaExpandida] = useState(null)
+  const [facturaSeleccionada, setFacturaSeleccionada] = useState<{
+    id: string;
+    fecha: string;
+    periodo: string;
+    monto: number;
+    estado: string;
+    consumo: number;
+    vencimiento: string;
+    metodoPago: string;
+    fechaPago: string;
+    conceptos: Array<{ concepto: string; importe: number }>;
+  } | null>(null)
+  const [facturaExpandida, setFacturaExpandida] = useState<string | null>(null)
 
-  const toggleFacturaExpandida = (id) => {
+  const toggleFacturaExpandida = (id: string) => {
     if (facturaExpandida === id) {
       setFacturaExpandida(null)
     } else {
@@ -166,12 +177,12 @@ export function FacturacionContent() {
     }
   }
 
-  const verDetalleFactura = (factura) => {
+  const verDetalleFactura = (factura: typeof facturas[0]) => {
     setFacturaSeleccionada(factura)
     setTabActiva("detalle")
   }
 
-  const getBadgeColor = (estado) => {
+  const getBadgeColor = (estado: string) => {
     switch (estado) {
       case "Pagada":
         return "bg-green-100 text-green-800"
@@ -184,7 +195,7 @@ export function FacturacionContent() {
     }
   }
 
-  const getEstadoIcon = (estado) => {
+  const getEstadoIcon = (estado: string) => {
     switch (estado) {
       case "Pagada":
         return <CheckCircle className="h-4 w-4 text-green-600" />
