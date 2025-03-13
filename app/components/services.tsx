@@ -181,7 +181,9 @@ export default function Services() {
 
     // Añadir evento de cierre al botón
     const closeButton = modalContent.querySelector("#close-modal")
-    closeButton.addEventListener("click", closeModal)
+    if (closeButton) {
+      closeButton.addEventListener("click", closeModal)
+    }
 
     // Cerrar el modal al hacer clic fuera
     modalOverlay.addEventListener("click", (e) => {
@@ -542,7 +544,7 @@ export default function Services() {
         // Mostrar el contenido seleccionado
         const tabId = trigger.getAttribute("data-tab")
         const activeContent = modalContent.querySelector(`.tab-content[data-tab="${tabId}"]`)
-        activeContent.classList.remove("hidden")
+        activeContent?.classList.remove("hidden")
       })
     })
   }
