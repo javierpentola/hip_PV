@@ -447,7 +447,10 @@ export default function CTA() {
                           <Button
                             variant="outline"
                             className="text-primary border-primary"
-                            onClick={() => document.querySelector('[data-value="formulario"]').click()}
+                            onClick={() => {
+                              const element = document.querySelector('[data-value="formulario"]');
+                              if (element) element.click();
+                            }}
                           >
                             Solicitar mi oferta
                           </Button>
