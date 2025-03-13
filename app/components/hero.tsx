@@ -240,8 +240,12 @@ export default function Hero() {
                     <Button
                       className="mt-2 bg-primary hover:bg-primary/90 text-black"
                       onClick={() => {
-                        const consumo = Number.parseFloat(document.getElementById("consumo-mensual").value)
-                        const tarifaActual = Number.parseFloat(document.getElementById("tarifa-actual").value)
+                        const consumoElement = document.getElementById("consumo-mensual");
+                        const consumo = consumoElement ? Number.parseFloat((consumoElement as HTMLInputElement).value) : 0;
+                        
+                        const tarifaActualElement = document.getElementById("tarifa-actual");
+                        const tarifaActual = tarifaActualElement ? Number.parseFloat((tarifaActualElement as HTMLInputElement).value) : 0;
+                        
                         const tarifaHipElement = document.querySelector("[data-value]")
                         const tarifaHipValue = tarifaHipElement ? tarifaHipElement.getAttribute("data-value") : "basica"
 
@@ -255,13 +259,24 @@ export default function Hero() {
                         const ahorroAnual = ahorro * 12
                         const porcentajeAhorro = ((ahorro / gastoActual) * 100).toFixed(1)
 
-                        document.getElementById("gasto-actual").textContent = gastoActual.toFixed(2) + " €"
-                        document.getElementById("gasto-hip").textContent = gastoHip.toFixed(2) + " €"
-                        document.getElementById("ahorro-mensual").textContent = ahorro.toFixed(2) + " €"
-                        document.getElementById("ahorro-anual").textContent = ahorroAnual.toFixed(2) + " €"
-                        document.getElementById("porcentaje-ahorro").textContent = porcentajeAhorro + "%"
+                        // Safely update text content with null checks
+                        const gastoActualElement = document.getElementById("gasto-actual")
+                        if (gastoActualElement) gastoActualElement.textContent = gastoActual.toFixed(2) + " €"
+                        
+                        const gastoHipElement = document.getElementById("gasto-hip")
+                        if (gastoHipElement) gastoHipElement.textContent = gastoHip.toFixed(2) + " €"
+                        
+                        const ahorroMensualElement = document.getElementById("ahorro-mensual")
+                        if (ahorroMensualElement) ahorroMensualElement.textContent = ahorro.toFixed(2) + " €"
+                        
+                        const ahorroAnualElement = document.getElementById("ahorro-anual")
+                        if (ahorroAnualElement) ahorroAnualElement.textContent = ahorroAnual.toFixed(2) + " €"
+                        
+                        const porcentajeAhorroElement = document.getElementById("porcentaje-ahorro")
+                        if (porcentajeAhorroElement) porcentajeAhorroElement.textContent = porcentajeAhorro + "%"
 
-                        document.getElementById("resultados").style.display = "block"
+                        const resultadosElement = document.getElementById("resultados")
+                        if (resultadosElement) resultadosElement.style.display = "block"
                       }}
                     >
                       Calcular mi ahorro
